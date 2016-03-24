@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>artical | malerong&#39;s blog</title>
+  <title>elasticsearch shard issues | malerong&#39;s blog</title>
   <meta name="author" content="Ma lerong">
   
   <meta name="description" content="I am a PHD student in BIT">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="elasticsearch shard issues"/>
   <meta property="og:site_name" content="malerong&#39;s blog"/>
 
   
@@ -202,25 +202,144 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">artical</h2>
-
-
-  <div class="archive">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-03-17T03:20:01.000Z"><a href="/2016/03/17/hexo-settings/">2016-03-17</a></time>
-            
-              <h1 class="title"><a href="/2016/03/17/hexo-settings/">hexo settings</a></h1>
-            
-          </header>
-        </div>
-      </article>
+      <img src="">
     
   </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-03-24T14:20:01.000Z"><a href="/2016/03/24/fix-elasticsearch/">2016-03-24</a></time>
+      
+      
+  
+    <h1 class="title">elasticsearch shard issues</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is a blog about my experience fixing the elasticSearch shards unsignment</p>
+<a id="more"></a>
+<p>ElasticSearch is a powerful server for large volume of data. However, A new beginer come across many issues, such as red health implying some shards not to load. How to fix this, Here I gave my experence.</p>
+<p>##1. Problem description<br>The first evidence something’s wrong comes from the usual cluster state query.</p>
+<blockquote>
+<pre><code>curl -XGET http://localhost:9200/_cluster/health?pretty
+    {
+      &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
+      &quot;status&quot; : &quot;red&quot;,
+      &quot;timed_out&quot; : false,
+      &quot;number_of_nodes&quot; : 20,
+      &quot;number_of_data_nodes&quot; : 16,
+      &quot;active_primary_shards&quot; : 2558,
+      &quot;active_shards&quot; : 5628,
+      &quot;relocating_shards&quot; : 0,
+      &quot;initializing_shards&quot; : 4,
+      &quot;unassigned_shards&quot; : 22
+    }
+</code></pre></blockquote>
+<p>From the above, we can see there are 22 shards unassigned,and status is read; therefore, the server do not support services. How to address this problems, I spent one day writting a shell script to fix them.</p>
+<p>##2.shell script</p>
+<blockquote>
+<pre><code>for items in $(curl -XGET http://localhost:9200/_cat/shards | grep UNASSIGNED| awk &apos;{print $1&quot;-&quot;$2}&apos;)    
+do   
+list_item=($(tr &quot;-&quot; &quot;&quot; &lt;&lt;&lt; $items)) # change a string into a array
+   yearmonth=${list_item[0]} # to get a entry in the array which index is 0
+   shard=${list_item[1]} # to get a entry in the array which index is 1
+   curl -XPOST &apos;localhost:9200/_cluster/reroute&apos; -d &apos;{
+       &quot;commands&quot; : [ {
+             &quot;allocate&quot; : {
+                 &quot;index&quot; : &quot;&apos;$yearmonth&apos;&quot;,  # single quotation can cat different strings into a whole string
+                 &quot;shard&quot; : &apos;$shard&apos;,
+                 &quot;node&quot; : &quot;node-1&quot;,
+                 &quot;allow_primary&quot; : true
+             }
+           }
+       ]
+   }&apos;        
+done
+</code></pre></blockquote>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/elasticsearch/">elasticsearch</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/elasticsearch-shell/">elasticsearch shell</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    
+    <a href="/2016/03/17/hexo-settings/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+
+
+<section id="comment">
+
+<!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"malerong-bit"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+<!-- Duoshuo Comment END -->  
+
+  
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
