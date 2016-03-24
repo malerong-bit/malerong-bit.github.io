@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>elasticsearch | malerong&#39;s blog</title>
+  <title>linux useful command | malerong&#39;s blog</title>
   <meta name="author" content="Ma lerong">
   
   <meta name="description" content="I am a PHD student in BIT">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="linux useful command"/>
   <meta property="og:site_name" content="malerong&#39;s blog"/>
 
   
@@ -202,25 +202,109 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title category">elasticsearch</h2>
-
-
-  <div class="archive">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-03-24T14:20:01.000Z"><a href="/2016/03/24/fix-elasticsearch/">2016-03-24</a></time>
-            
-              <h1 class="title"><a href="/2016/03/24/fix-elasticsearch/">elasticsearch shard issues</a></h1>
-            
-          </header>
-        </div>
-      </article>
+      <img src="">
     
   </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-03-24T15:17:29.000Z"><a href="/2016/03/24/linux-useful-command/">2016-03-24</a></time>
+      
+      
+  
+    <h1 class="title">linux useful command</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>The file contain the usual shell command that I used in my works.</p>
+<a id="more"></a>
+<p>##1 directory and file manipulate<br>    a). mv moving_file  new_file  #move or rename a file<br>    b). mkdir/rmdir dir_name     #make a dir or delete a dir<br>    c). rm -rf XXX      # delete all file or directory contain directories or files</p>
+<p>##2 zip/unzip<br>    a) tar czvf zip_file dir # zip the dir into a zip file<br>    b) tar xzvf zip_file  desdir  # unzip a zip file to a dir<br>    c) rar a zip_file sourcedir<br>    d) rar x zip_file destdir</p>
+<p>##3 screen<br>    screen -S yourname<br>    screen -D yourname<br>    screen -r yourname<br>    screen -wipe<br>    screen -ls</p>
+<p>##4 scp<br>   a) scp -r sourcedir  destination_dir(username@IP:pwd/dir)</p>
+<p>##5 user<br>    su user  #from root to user<br>    sudo su  #from user to root<br>    sudo password root #set passowrd<br>    ~ represent home dirctory of a current user<br>    adduser /passwd<br>    gpasswd -a/-d userid groupid<br>    uname -a  # system imformation</p>
+<p>##6 ls<br>    ls -a<br>    ls -sh<br>    ls -l</p>
+<p>##7 free<br>    df<br>    du<br>    free</p>
+<p>##8 chmod<br>    chmod 777 file<br>    ps -ef|grep  |cut -c 15-20|xargs kill -9<br>    ps -ef|grep XX |awk ‘{print $1,$2}’</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/linux-command/">linux command</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    
+    <a href="/2016/03/24/fix-elasticsearch/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+
+
+<section id="comment">
+
+<!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"malerong-bit"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+<!-- Duoshuo Comment END -->  
+
+  
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
