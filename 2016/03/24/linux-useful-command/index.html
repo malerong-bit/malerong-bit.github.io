@@ -232,15 +232,36 @@
       
         <p>The file contain the usual shell command that I used in my works.</p>
 <a id="more"></a>
-<p>##1 directory and file manipulate<br>    a). mv moving_file  new_file  #move or rename a file<br>    b). mkdir/rmdir dir_name     #make a dir or delete a dir<br>    c). rm -rf XXX      # delete all file or directory contain directories or files</p>
-<p>##2 zip/unzip<br>    a) tar czvf zip_file dir # zip the dir into a zip file<br>    b) tar xzvf zip_file  desdir  # unzip a zip file to a dir<br>    c) rar a zip_file sourcedir<br>    d) rar x zip_file destdir</p>
-<p>##3 screen<br>    screen -S yourname<br>    screen -D yourname<br>    screen -r yourname<br>    screen -wipe<br>    screen -ls</p>
-<p>##4 scp<br>   a) scp -r sourcedir  destination_dir(username@IP:pwd/dir)</p>
-<p>##5 user<br>    su user  #from root to user<br>    sudo su  #from user to root<br>    sudo password root #set passowrd<br>    ~ represent home dirctory of a current user<br>    adduser /passwd<br>    gpasswd -a/-d userid groupid<br>    uname -a  # system imformation</p>
-<p>##6 ls<br>    ls -a<br>    ls -sh<br>    ls -l</p>
-<p>##7 free<br>    df<br>    du<br>    free</p>
-<p>##8 chmod<br>    chmod 777 file<br>    ps -ef|grep  |cut -c 15-20|xargs kill -9<br>    ps -ef|grep XX |awk ‘{print $1,$2}’</p>
-
+<h2 id="1-directory-and-file-manipulate"><a href="#1-directory-and-file-manipulate" class="headerlink" title="1 directory and file manipulate"></a>1 directory and file manipulate</h2><pre><code>a). mv moving_file  new_file  #move or rename a file
+b). mkdir/rmdir dir_name     #make a dir or delete a dir
+c). rm -rf XXX      # delete all file or directory contain directories or files
+</code></pre><h2 id="2-zip-unzip"><a href="#2-zip-unzip" class="headerlink" title="2 zip/unzip"></a>2 zip/unzip</h2><pre><code>a) tar czvf zip_file dir # zip the dir into a zip file
+b) tar xzvf zip_file  desdir  # unzip a zip file to a dir
+c) rar a zip_file sourcedir
+d) rar x zip_file destdir
+</code></pre><h2 id="3-screen"><a href="#3-screen" class="headerlink" title="3 screen"></a>3 screen</h2><pre><code>screen -S yourname
+screen -D yourname
+screen -r yourname
+screen -wipe
+screen -ls
+</code></pre><h2 id="4-scp"><a href="#4-scp" class="headerlink" title="4 scp"></a>4 scp</h2><p>   a) scp -r sourcedir  destination_dir(username@IP:pwd/dir)</p>
+<h2 id="5-user"><a href="#5-user" class="headerlink" title="5 user"></a>5 user</h2><pre><code>su user  #from root to user
+sudo su  #from user to root
+sudo password root #set passowrd
+~ represent home dirctory of a current user
+adduser /passwd
+gpasswd -a/-d userid groupid
+uname -a  # system imformation
+</code></pre><h2 id="6-ls"><a href="#6-ls" class="headerlink" title="6 ls"></a>6 ls</h2><pre><code>ls -a 
+ls -sh
+ls -l
+</code></pre><h2 id="7-free"><a href="#7-free" class="headerlink" title="7 free"></a>7 free</h2><pre><code>df
+du 
+free
+</code></pre><h2 id="8-chmod"><a href="#8-chmod" class="headerlink" title="8 chmod"></a>8 chmod</h2><pre><code>chmod 777 file
+ps -ef|grep  |cut -c 15-20|xargs kill -9
+ps -ef|grep XX |awk &apos;{print $1,$2}&apos;
+</code></pre>
       
     </div>
     <footer>
