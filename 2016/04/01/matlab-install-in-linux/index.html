@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>index | malerong&#39;s blog</title>
+  <title>matlab install in linux | malerong&#39;s blog</title>
   <meta name="author" content="Ma lerong">
   
   <meta name="description" content="I am a PHD student in BIT">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="matlab install in linux"/>
   <meta property="og:site_name" content="malerong&#39;s blog"/>
 
   
@@ -202,25 +202,157 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">index</h2>
-
-
-  <div class="archive">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-04-01T10:51:30.000Z"><a href="/2016/04/01/index-delete-and-clean-data-from-file-disk/">2016-04-01</a></time>
-            
-              <h1 class="title"><a href="/2016/04/01/index-delete-and-clean-data-from-file-disk/">how to delete a index completely in elasticSearch</a></h1>
-            
-          </header>
-        </div>
-      </article>
+      <img src="">
     
   </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T11:19:23.000Z"><a href="/2016/04/01/matlab-install-in-linux/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title">matlab install in linux</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>How to install matlab in linux only with ssh</p>
+<a id="more"></a>
+<p>I refered to the following the paper<br><img src="http://wenku.baidu.com/link?url=GG7EJsjfUNhCNA7qtKPsO94uc1JQhP4xL6d9HclG0cuxD0nbHjhJMi6aD0S2lVC_sC7AzykYJ2wn3NS-d65ZMKyGhL0nyqvdM7nHcn0dVou" alt="Linux下MatlabR2013a命令行(silent mode)"><br>, and execute following commands in terms with step described in the paper.</p>
+<p>1）拷贝文件：将matlabforlinux.iso文件拷贝到服务器上去。</p>
+<p>2）远程登录：ssh hostname@IPaddr</p>
+<p>3）准备工作： </p>
+<pre><code>sudo  mkdir  /media/cdrom0
+sudo  mkdir  /usr/local/matlab
+</code></pre><p>4）挂载iso文件：mount  ~/matlab.iso   /media/cdrom0/  -t iso9660  -o loop  //~为matlab.iso所在路径<br>安装过程中主要用到的文件有install、installer_input.txt、activate.txt和license.lic（在serial文件夹下，installationKey在此文件夹下的readme.txt中）</p>
+<pre><code>sudo  cp  serial/license.lic  /usr/local/etc  //拷贝license
+sudo  cp  activate.ini  /usr/local/etc    //拷贝激活文件模版供后续编辑
+sudo  cp  installer_input.txt  /usr/local/etc    //拷贝自动安装文件模版供后续编辑
+</code></pre><p>sudo  vim  /usr/local/etc/installer_input.txt   //编辑installer_input文件,键入星号内内容并     保存</p>
+<blockquote>
+<hr>
+<p>destinationFolder= /usr/local/matlab  //安装目录</p>
+<p>fileInstallationKey=xxxxx-xxxxx-xxxxx-xxxxx-xxxxx  //你的序列号</p>
+<p>agreeToLicense=yes  //同意协议</p>
+<p>outputFile=/tmp/mathwork_install.log  //安装日志</p>
+<p>mode=silent //开启无人值守安装</p>
+<p>licensePath=/usr/local/etc/license.lic  //你的license文件</p>
+<p>activationPropertiesFile=/usr/local/etc/activate.ini  //激活文件</p>
+</blockquote>
+<hr>
+<p>sudo  vim  /usr/local/etc/activate.ini   //编辑activate文件，键入星号内内容并保存</p>
+<blockquote>
+<hr>
+<p>isSilent=true  //开启silent模式</p>
+<p>activateCommand=activateOffline   //设置激活方式，离线激活</p>
+<p>licenseFile=/usr/local/etc/license.lic   //license文件位置<br><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>`</p>
+</blockquote>
+<p>以上为全部准备工作，执行安装命令</p>
+<p>6）sudo  ./install  -inputFile  /usr/local/etc/installer_input.txt<br> 等待安装完毕即可</p>
+<p>7）启动matlab<br>       cd /usr/local/matlab/bin<br>       ./matlab<br>The above steps can carry out, but it not working. Here the some addtional comfiguration steps have to do as follows.</p>
+<h1 id="Your-installation-may-require-additional-configuration-steps"><a href="#Your-installation-may-require-additional-configuration-steps" class="headerlink" title="Your installation may require additional configuration steps."></a>Your installation may require additional configuration steps.</h1><ol>
+<li>The following products require a supported compiler:</li>
+</ol>
+<p>MATLAB Compiler 4.18.1<br>MATLAB Builder JA 2.2.6<br>Stateflow 8.1<br>Simulink Coder 8.4<br>MATLAB Coder 2.4</p>
+<ol>
+<li><p>Simulink requires a C compiler for simulation acceleration, model reference, and MATLAB Function Block capabilities. It is recommended that you install a supported compiler on your machine.</p>
+</li>
+<li><p>To accelerate computations with the following products, a supported compiler is required:</p>
+</li>
+</ol>
+<p>SimBiology 4.3<br>Fixed-Point Designer 4.0</p>
+<ol>
+<li><p>After this installation is complete, you should continue with your configuration of the MATLAB Distributed Computing Server as outlined in the instructions obtained from www.mathworks.com/distconfig.</p>
+</li>
+<li><p>Important:<br>Before you can use MATLAB Production Server, you must set up your environment.</p>
+</li>
+</ol>
+<p>a. Download and install the MATLAB Compiler Runtime (MCR)</p>
+<ul>
+<li>Install the MCR in the default location</li>
+<li>Use version R2012b (v8.0) or later of the MCR</li>
+</ul>
+<p>b. At the system command line, run mps-setup from the script folder. The script folder is located at /usr/local/matlab/script.</p>
+<p>c. For detailed instructions, download the Quick Start Guide.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/matlab/">matlab</a>, <a href="/tags/installation/">installation</a>
+  </div>
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3326447" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    
+    <a href="/2016/04/01/index-delete-and-clean-data-from-file-disk/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+
+
+<section id="comment">
+
+<!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"malerong-bit"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+<!-- Duoshuo Comment END -->  
+
+  
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
