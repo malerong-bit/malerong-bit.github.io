@@ -252,6 +252,10 @@ sudo password root #set passowrd
 adduser /passwd
 gpasswd -a/-d userid groupid
 uname -a  # system imformation
+cd ~
+vim .bashrc  # change a user profile using the system
+PATH=/usr/local/MATLAB/R2013a/bin: $PATH
+export PATH
 </code></pre><h2 id="6-ls"><a href="#6-ls" class="headerlink" title="6 ls"></a>6 ls</h2><pre><code>ls -a 
 ls -sh
 ls -l
@@ -261,7 +265,9 @@ free
 </code></pre><h2 id="8-chmod"><a href="#8-chmod" class="headerlink" title="8 chmod"></a>8 chmod</h2><pre><code>chmod 777 file
 ps -ef|grep  |cut -c 15-20|xargs kill -9
 ps -ef|grep XX |awk &apos;{print $1,$2}&apos;
-</code></pre><h2 id="9-install-and-download"><a href="#9-install-and-download" class="headerlink" title="9 install and download"></a>9 install and download</h2><pre><code>sudo apt-get install XXX  # This command conducts downloading and installing the software from the repository that was maintented by association.
+</code></pre><h2 id="9-install-uninstall-and-download"><a href="#9-install-uninstall-and-download" class="headerlink" title="9 install , uninstall and download"></a>9 install , uninstall and download</h2><pre><code>sudo apt-get remove XXX  #remove the application without disk files
+sudo apt-get purge XXX #purge disk files clearly
+sudo apt-get install XXX  # This command conducts downloading and installing the software from the repository that was maintented by association.
 wget url   # download the data from the given url
 </code></pre>
       
