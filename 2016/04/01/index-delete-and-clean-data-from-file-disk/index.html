@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>hexo settings | malerong&#39;s blog</title>
+  <title>index delete and clean data from file disk | malerong&#39;s blog</title>
   <meta name="author" content="Ma lerong">
   
   <meta name="description" content="I am a PHD student in BIT">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="hexo settings"/>
+  <meta property="og:title" content="index delete and clean data from file disk"/>
   <meta property="og:site_name" content="malerong&#39;s blog"/>
 
   
@@ -220,56 +220,38 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-03-17T03:20:01.000Z"><a href="/2016/03/17/hexo-settings/">2016-03-17</a></time>
+        <time datetime="2016-04-01T10:51:30.000Z"><a href="/2016/04/01/index-delete-and-clean-data-from-file-disk/">2016-04-01</a></time>
       
       
   
-    <h1 class="title">hexo settings</h1>
+    <h1 class="title">index delete and clean data from file disk</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>This is a set of problems when I install node.js , hexo and settings in terms of Zipperary blog.</p>
+        <p>How to delete a index in elasticsearch and clean the coressponding disk file</p>
 <a id="more"></a>
-<p>It is the first time that I use hexo. When I install hexo in terms of Zipperary blog from internet,<br>there are some problems. Here I summary my issue under installsion as follows for beginers.</p>
-<ol>
-<li>the selection of version of node.js. Here we use v.10.</li>
-<li><p>When you come across no deploy git, you can use the folloing command:</p>
-<blockquote>
-<p>npm install hexo-deployer-git –save</p>
-</blockquote>
-</li>
-<li><p>When we finished hexo installed, we next configure the layout of your blog, and the most easy way is using the following command:</p>
-<blockquote>
-<p>git clone <a href="https://github.com/zippera/lightum.git" target="_blank" rel="external">https://github.com/zippera/lightum.git</a> themes/lightum</p>
-</blockquote>
-</li>
-<li><p>If you want to add weibo information of you, you can use the link to get the code into your weibo layout.</p>
-<p><img src="http://app.weibo.com/tool/weiboshow" alt="QQ show create"></p>
-</li>
-<li><p>Provided that you want to add about page, that page do not generate by default, you can employ the following command in Git-bash Enviroment.</p>
-<blockquote>
-<p>hexo new page “about”</p>
-</blockquote>
-<p>Then you can edit index.md page with Markdown editor.</p>
-</li>
-</ol>
+<p>Today I encounter a problem related to deleting a index of elasticsearch. When I deleted a index in elasticsearch server with the command as follow:</p>
+<pre><code>curl -XDELETE &apos;http://localhost:9200/index_name/&apos;
+</code></pre><p>I come across the disk file coressponding to the index not to clean. However, I found the server working with the command curl localhost:9200/_cat/indices?v. Therefore, how to clean the disk file related a deleted index is a serious issue. Here I give a detailed explanation step by step.</p>
+<p>1 delete a index with command</p>
+<pre><code>curl -XDELETE &apos;http://localhost:9200/index_name/&apos;
+</code></pre><p>2 flush a log with flush command </p>
+<pre><code>curl -XPOST localhost:9200/_flush?wait_for_ongoing
+</code></pre><p>3 change to the dir where elasticsearch data store, then delete the file</p>
+<pre><code>rm -rf index_name
+</code></pre><p>4 restart the elasticsearch server.</p>
 
       
     </div>
     <footer>
       
         
-  
-  <div class="categories">
-    <a href="/categories/blog/">blog</a>
-  </div>
-
         
   
   <div class="tags">
-    <a href="/tags/blog/">blog</a>, <a href="/tags/artical/">artical</a>
+    <a href="/tags/index-deleted/">index deleted</a>
   </div>
 
 <!-- Baidu Button BEGIN -->
@@ -297,8 +279,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
  <nav id="pagination" >
     
-    <a href="/2016/03/24/fix-elasticsearch/" class="alignleft prev" >上一页</a>
     
+    <a href="/2016/03/25/正则表达式/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
