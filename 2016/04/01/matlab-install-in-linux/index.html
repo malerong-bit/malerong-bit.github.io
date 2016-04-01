@@ -292,6 +292,18 @@ sudo  cp  installer_input.txt  /usr/local/etc    //拷贝自动安装文件模�
 <blockquote>
 <p>sudo ./install_linux -mode silent</p>
 </blockquote>
+<h1 id="post-installation"><a href="#post-installation" class="headerlink" title="post installation"></a>post installation</h1><p>1 you can set enviroment</p>
+<blockquote>
+<p>cd ~<br>vim .bashrc<br>adding<br>PATH=/usr/local/MATLAB/R2013a/bin:$PATH<br>export PATH<br>:qw<br>source .bashrc</p>
+</blockquote>
+<p>2 adding the alias run matlab without desktop</p>
+<blockquote>
+<p>vim .bashrc<br>adding<br>alias mrun=’matlab -nodesktop -nosplash -r’<br>:qw</p>
+</blockquote>
+<p>3 changing code in M file when have figure</p>
+<blockquote>
+<p>figure(‘visible’,’off’)<br>print(‘-deps’,’example.eps’) or hgsave(‘example.fig’);</p>
+</blockquote>
 
       
     </div>
